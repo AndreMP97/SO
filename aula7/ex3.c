@@ -12,7 +12,7 @@
 int main() {
   pid_t pid;
   char *name = "/sem";
-  sem_t *s_turn = sem_open(name, O_CREAT | O_EXCL, S_IRUSR, S_IWUSR, 0);
+  sem_t *s_turn = sem_open(name, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 0);
   sem_unlink(name);
   pid = fork();
   if (pid == 0) {
