@@ -20,7 +20,7 @@ void wait_for_signal() {
 }
 
 int main() {
-  int n, max = 10000;
+  int n, max = 20;
   pid_t pid;
   signal(SIGUSR1, my_handler);
   pid = fork();
@@ -31,15 +31,15 @@ int main() {
       printf("FILHO %d\n",n);
       n += 2;
       kill(pid, SIGUSR1);
+      wait_for_signal();
     }
-    wait_for_signal();
   }
   else {
     n = 2;
     while (n <= max) {
       wait_for_signal();
       printf("PAI %d\n",n);
-      n += 1;
+      n += 2;
       kill(pid, SIGUSR1);
     }
     wait(NULL);
